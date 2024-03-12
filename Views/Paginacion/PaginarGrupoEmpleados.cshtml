@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MvcCorePaginacionRegistros.Models.Empleado>
+
+@{
+    ViewData["Title"] = "PaginarGrupoEmpleados";
+}
+
+@{
+    int registros = (int)ViewData["REGISTROS"];
+    int numeroPagina = 1;
+}
+
+<h1>Paginar Grupo Empleados</h1>
+
+<div>
+    <ul class="list-group list-group-horizontal">
+        @for(int i=1; i <= registros; i += 3)
+        {
+            <li class="list-group-item">
+                <a asp-controller="Paginacion"
+                asp-action="PaginarGrupoEmpleados"
+                asp-route-posicion="@i">
+            @numeroPagina</a>
+            </li>
+            numeroPagina++;
+        }
+    </ul>
+</div>
+
+<table class="table table-bordered table-warning">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEmpleado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Oficio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDepartamento)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEmpleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Oficio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDepartamento)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

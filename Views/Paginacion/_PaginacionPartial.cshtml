@@ -1,0 +1,53 @@
+﻿<ul class="list-group list-group-horizontal">
+    <li class="list-group-item">
+        <a id="primero"
+           asp-route-posicion="1"
+           asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
+            Primero
+        </a>
+    </li>
+    <li class="list-group-item">
+        <a id="anterior"
+           asp-route-posicion="@ViewData["ANTERIOR"]"
+           asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
+            Anterior
+        </a>
+    </li>
+    <li class="list-group-item">
+        <a id="siguiente"
+           asp-route-posicion="@ViewData["SIGUIENTE"]"
+           asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
+            Siguiente
+        </a>
+    </li>
+    <li class="list-group-item">
+        <a id="ultimo"
+           asp-route-posicion="@ViewData["ULTIMO"]"
+           asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
+            Ultimo
+        </a>
+    </li>
+</ul>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#primero").click(function () {
+
+            })
+            $("#botonfindcoche").click(function () {
+                //PARA LLAMAR CON PARAMETROS TENEMOS VARIAS OPCIONES
+                //SI NUESTRO PARAMETRO SE LLAMA id, LO ENVIAREMOS DIRECTAMENTE
+                //CON UNA /
+                // Controller/Action/ID
+                //SI EL PARAMETRO SE LLAMA DE CUALQUIER OTRA FORMA
+                // Controller/Action?parametro=valor
+                //SI RECIBIMOS MAS DE UN PARAMETRO
+                // Controller/Action?param1=valor&param2=valor
+                var id = $("#cajaidcoche").val();
+                var request = "/Coches/_DetailsCoche?posicion=" + id;
+                $("#detallescoche").load(request);
+            })
+        })
+    </script>
+}

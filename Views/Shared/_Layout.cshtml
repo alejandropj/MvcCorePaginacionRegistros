@@ -34,9 +34,14 @@
                                 <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="PaginarRegistroVistaDept">Paginar Registro Vista</a></li>
                                 <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="PaginarGrupoVistaDept">Paginar Grupo Vista</a></li>
                                 <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="PaginarGrupoDept">Paginar Grupo Departamento</a></li>
-                                <li><a class="dropdown-item" href="#">A third link</a></li>
+                                <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="PaginarGrupoEmpleados">Paginar Grupo Empleados</a></li>
+                                <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="EmpleadosOficio">Paginar Empleados Oficio</a></li>
+                                <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="EmpleadosOficioOut">Paginar Empleados Oficio Out</a></li>
+                                <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="Departamentos">Paginar Empleados Departamento Profe</a></li>
+                                <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="DepartamentoAjax">Paginar Empleados Departamento Ajax</a></li>
                             </ul>
                         </li>
+                        @await Component.InvokeAsync("MenuDeptEmp")
                     </ul>
                 </div>
             </div>

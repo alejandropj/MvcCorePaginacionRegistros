@@ -1,0 +1,106 @@
+﻿@model ModelDepartamentoEmpleados
+
+@{
+    ViewData["Title"] = "List";
+}
+@{
+    int registros = 0;
+    int numeroPagina = 1;
+    int iddept = 0;
+    if (ViewData["REGISTROS"] != null)
+    {
+        registros = (int)ViewData["REGISTROS"];
+        iddept = (int)ViewData["IDDEPT"];
+    }
+}
+
+<h1>Departamento Paginar Empleados</h1>
+
+<hr />
+<ul class="list-group list-group-horizontal">
+    @for (int i = 1; i <= registros; i ++)
+    {
+        <li class="list-group-item list-group-item-success">
+            <a asp-controller="Paginacion"
+               asp-action="DepartamentoEmpleado"
+               asp-route-iddept="@iddept"
+               asp-route-posicion="@i">
+                Página @numeroPagina
+            </a>
+        </li>
+        numeroPagina++;
+    }
+</ul>
+<hr />
+<table class="table table-warning">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                NOMBRE
+            </th>
+            <th>
+                LOCALIDAD
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>
+                    @Model.Departamento.IdDepartamento
+                </td>
+                <td>
+                @Model.Departamento.Nombre
+                </td>
+                <td>
+                @Model.Departamento.Localidad
+                </td>
+            </tr>
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                IdEmpleado
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                Oficio
+            </th>
+            <th>
+                Salario
+            </th>
+            <th>
+                IdDepartamento
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @if(Model.Empleado != null){
+            <td>
+                    @Model.Empleado.IdEmpleado
+            </td>
+            <td>
+                    @Model.Empleado.Apellido
+            </td>
+            <td>
+                    @Model.Empleado.Oficio
+            </td>
+            <td>
+                    @Model.Empleado.Salario
+            </td>
+            <td>
+                    @Model.Empleado.IdDepartamento
+            </td>
+            }
+        </tr>
+    </tbody>
+</table>
