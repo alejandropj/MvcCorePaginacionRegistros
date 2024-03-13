@@ -30,40 +30,7 @@
 </h2>
 
 <div>
-    <ul class="list-group list-group-horizontal">
-        <li class="list-group-item">
-            <a asp-controller="Paginacion"
-               asp-action="EmpleadosDepartamento"
-               asp-route-posicion="1"
-               asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
-                Primero
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a asp-controller="Paginacion"
-               asp-action="EmpleadosDepartamento"
-               asp-route-posicion="@ViewData["ANTERIOR"]"
-               asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
-                Anterior
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a asp-controller="Paginacion"
-               asp-action="EmpleadosDepartamento"
-               asp-route-posicion="@ViewData["SIGUIENTE"]"
-               asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
-                Siguiente
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a asp-controller="Paginacion"
-               asp-action="EmpleadosDepartamento"
-               asp-route-posicion="@ViewData["ULTIMO"]"
-               asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
-                Ultimo
-            </a>
-        </li>
-    </ul>
+     <partial name="_PaginacionPartial"/>
 </div>
 <hr />
 <ul class="list-group">

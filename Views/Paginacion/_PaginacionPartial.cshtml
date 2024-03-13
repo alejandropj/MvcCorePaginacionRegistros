@@ -1,31 +1,29 @@
 ﻿<ul class="list-group list-group-horizontal">
     <li class="list-group-item">
-        <a id="primero"
-           asp-route-posicion="1"
-           asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
+        <button id="primero" value="@ViewData["DEPARTAMENTO"]">
             Primero
-        </a>
+        </button>
     </li>
     <li class="list-group-item">
-        <a id="anterior"
+        <button id="anterior"
            asp-route-posicion="@ViewData["ANTERIOR"]"
            asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
             Anterior
-        </a>
+        </button>
     </li>
     <li class="list-group-item">
-        <a id="siguiente"
+        <button id="siguiente"
            asp-route-posicion="@ViewData["SIGUIENTE"]"
            asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
             Siguiente
-        </a>
+        </button>
     </li>
     <li class="list-group-item">
-        <a id="ultimo"
+        <button id="ultimo"
            asp-route-posicion="@ViewData["ULTIMO"]"
            asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
             Ultimo
-        </a>
+        </button>
     </li>
 </ul>
 
@@ -33,7 +31,10 @@
     <script>
         $(document).ready(function () {
             $("#primero").click(function () {
-
+                var posicion = 1
+                var iddept = $("#primero").val();
+                var request = "/Paginacion/EmpleadosDepartamentoAjax?posicion=" + id + "&iddepartamento=" + iddept;
+                $("#detallescoche").load(request);
             })
             $("#anterior").click(function () {
                 // Controller/Action?parametro=valor
