@@ -38,11 +38,10 @@
                                 <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="EmpleadosOficio">Paginar Empleados Oficio</a></li>
                                 <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="EmpleadosOficioOut">Paginar Empleados Oficio Out</a></li>
                                 <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="Departamentos">Paginar Empleados Departamento Profe</a></li>
-                                <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="DepartamentoAjax">Paginar Empleados Departamento Ajax</a></li>
+                                <li><a class="dropdown-item" asp-controller="Paginacion" asp-action="DepartamentosAjax">Paginar Empleados Departamento Ajax</a></li>
                             </ul>
                         </li>
                         @await Component.InvokeAsync("MenuDeptEmp")
-                        @await Component.InvokeAsync("MenuDeptEmpAjax")
                     </ul>
                 </div>
             </div>

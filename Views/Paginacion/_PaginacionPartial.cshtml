@@ -1,13 +1,18 @@
-﻿<ul class="list-group list-group-horizontal">
+﻿@model Empleado
+
+@{
+    Departamento departamento =
+            ViewData["DEPARTAMENTOSELECCIONADO"] as Departamento;
+}
+
+<ul class="list-group list-group-horizontal">
     <li class="list-group-item">
-        <button id="primero" value="@ViewData["DEPARTAMENTO"]">
+        <button id="primero">
             Primero
         </button>
     </li>
     <li class="list-group-item">
-        <button id="anterior"
-           asp-route-posicion="@ViewData["ANTERIOR"]"
-           asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
+        <button id="anterior" onclick='loadEmpleado(@ViewData["ANTERIOR"], @ViewData["POSICION"])'>
             Anterior
         </button>
     </li>
@@ -27,23 +32,51 @@
     </li>
 </ul>
 
+<ul class="list-group" id="detalleempleado">
+    <li class="list-group-item list-group-item-info">
+        Id Empleado: @Model.IdEmpleado
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Apellido: @Model.Apellido
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Oficio: @Model.Oficio
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Salario: @Model.Salario
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Departamento: @Model.IdDepartamento
+    </li>
+</ul>
+
+
 @section Scripts {
     <script>
         $(document).ready(function () {
+            function loadEmpleado(posicion, iddept) {
+                var request = "Paginacion/EmpleadosDepartamentoAjax?posicion=" + posicion + "&iddepartamento=" + iddept;
+                console.log(request);
+                $("#detalleempleado").load(request);
+            }
+
             $("#primero").click(function () {
-                var posicion = 1
-                var iddept = $("#primero").val();
-                var request = "/Paginacion/EmpleadosDepartamentoAjax?posicion=" + id + "&iddepartamento=" + iddept;
-                $("#detallescoche").load(request);
-            })
+                console.log("Hola");
+                loadEmpleado(1, @ViewData["POSICION"]);
+            });
+
             $("#anterior").click(function () {
-                // Controller/Action?parametro=valor
-                //SI RECIBIMOS MAS DE UN PARAMETRO
-                // Controller/Action?param1=valor&param2=valor
-                var id = $("#cajaidcoche").val();
-                var request = "/Coches/_DetailsCoche?posicion=" + id;
-                $("#detallescoche").load(request);
-            })
+                loadEmpleado("@ViewData["ANTERIOR"]", "@ViewData["POSICION"]");
+            });
+
+            $("#siguiente").click(function () {
+                loadEmpleado("@ViewData["SIGUIENTE"]", "@ViewData["DEPARTAMENTO"]");
+            });
+
+            $("#ultimo").click(function () {
+                loadEmpleado("@ViewData["ULTIMO"]", "@ViewData["DEPARTAMENTO"]");
+            });
+        });
         })
     </script>
 }

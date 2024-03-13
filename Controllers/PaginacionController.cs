@@ -220,7 +220,7 @@ namespace MvcCorePaginacionRegistros.Controllers
             return View(model.Empleado);
         }        
         public async Task<IActionResult> EmpleadosDepartamentoAjax
-    (int? posicion, int iddepartamento)
+        (int? posicion, int iddepartamento)
         {
             if (posicion == null)
             {
@@ -257,6 +257,12 @@ namespace MvcCorePaginacionRegistros.Controllers
         {
             List<Departamento> departamentos = await this.repo.GetDepartamentosAsync();
             return View(departamentos);
+        }        
+        public async Task<IActionResult> DepartamentosAjax()
+        {
+            List<Departamento> departamentos = await this.repo.GetDepartamentosAsync();
+            return View(departamentos);
         }
+
     }
 }
