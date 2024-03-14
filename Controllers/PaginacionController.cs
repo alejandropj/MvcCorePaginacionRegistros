@@ -258,7 +258,6 @@ namespace MvcCorePaginacionRegistros.Controllers
         {
             if (posicion == null)
             {
-                //POSICION PARA EL EMPLEADO
                 posicion = 1;
             }
             ModelEmpleadoPaginacion model = await
@@ -270,7 +269,6 @@ namespace MvcCorePaginacionRegistros.Controllers
             ViewData["REGISTROS"] = model.Registros;
             ViewData["DEPARTAMENTO"] = iddepartamento;
             int siguiente = posicion.Value + 1;
-            //DEBEMOS COMPROBAR QUE NO PASAMOS DEL NUMERO DE REGISTROS
             if (siguiente > model.Registros)
             {
                 //EFECTO OPTICO
@@ -285,7 +283,7 @@ namespace MvcCorePaginacionRegistros.Controllers
             ViewData["SIGUIENTE"] = siguiente;
             ViewData["ANTERIOR"] = anterior;
             ViewData["POSICION"] = posicion;
-            return View(model.Empleado);
+            return PartialView("_PaginacionPartial", model.Empleado);
         }
         public async Task<IActionResult> Departamentos()
         {

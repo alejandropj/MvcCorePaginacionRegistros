@@ -4,29 +4,26 @@
     Departamento departamento =
             ViewData["DEPARTAMENTOSELECCIONADO"] as Departamento;
 }
+<h3 class="mt-3">@ViewData["POSICION"] de @ViewData["ULTIMO"]</h3>
 
 <ul class="list-group list-group-horizontal">
     <li class="list-group-item">
-        <button id="primero">
+        <button class="btn btn-dark" onclick="loadEmpleadoPaginacion(1)" id="primero">
             Primero
         </button>
     </li>
     <li class="list-group-item">
-        <button id="anterior" onclick='loadEmpleado(@ViewData["ANTERIOR"], @ViewData["POSICION"])'>
+        <button class="btn btn-dark" onclick="loadEmpleadoPaginacion(@ViewData["ANTERIOR"])" id="anterior">
             Anterior
         </button>
     </li>
     <li class="list-group-item">
-        <button id="siguiente"
-           asp-route-posicion="@ViewData["SIGUIENTE"]"
-           asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
+        <button class="btn btn-dark" onclick="loadEmpleadoPaginacion(@ViewData["SIGUIENTE"])" id="siguiente">
             Siguiente
         </button>
     </li>
     <li class="list-group-item">
-        <button id="ultimo"
-           asp-route-posicion="@ViewData["ULTIMO"]"
-           asp-route-iddepartamento="@ViewData["DEPARTAMENTO"]">
+        <button class="btn btn-dark" onclick="loadEmpleadoPaginacion(@ViewData["ULTIMO"])" id="ultimo">
             Ultimo
         </button>
     </li>
@@ -49,34 +46,3 @@
         Departamento: @Model.IdDepartamento
     </li>
 </ul>
-
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            function loadEmpleado(posicion, iddept) {
-                var request = "Paginacion/EmpleadosDepartamentoAjax?posicion=" + posicion + "&iddepartamento=" + iddept;
-                console.log(request);
-                $("#detalleempleado").load(request);
-            }
-
-            $("#primero").click(function () {
-                console.log("Hola");
-                loadEmpleado(1, @ViewData["POSICION"]);
-            });
-
-            $("#anterior").click(function () {
-                loadEmpleado("@ViewData["ANTERIOR"]", "@ViewData["POSICION"]");
-            });
-
-            $("#siguiente").click(function () {
-                loadEmpleado("@ViewData["SIGUIENTE"]", "@ViewData["DEPARTAMENTO"]");
-            });
-
-            $("#ultimo").click(function () {
-                loadEmpleado("@ViewData["ULTIMO"]", "@ViewData["DEPARTAMENTO"]");
-            });
-        });
-        })
-    </script>
-}

@@ -25,28 +25,18 @@
     </li>
 </ul>
 
-<h2 style="color:blue">
-    Registro @ViewData["POSICION"] de @ViewData["REGISTROS"]
-</h2>
-
-<div>
-     <partial name="_PaginacionPartial"/>
-</div>
 <hr />
-<ul class="list-group">
-    <li class="list-group-item list-group-item-info">
-        Id Empleado: @Model.IdEmpleado
-    </li>
-    <li class="list-group-item list-group-item-info">
-        Apellido: @Model.Apellido
-    </li>
-    <li class="list-group-item list-group-item-info">
-        Oficio: @Model.Oficio
-    </li>
-    <li class="list-group-item list-group-item-info">
-        Salario: @Model.Salario
-    </li>
-    <li class="list-group-item list-group-item-info">
-        Departamento: @Model.IdDepartamento
-    </li>
-</ul>
+<div id="partialEmpleados"></div>
+
+@section Scripts {
+    <script>
+        function loadEmpleadoPaginacion(posicion) {
+            $(document).ready(function () {
+                $("#partialEmpleados").load("/Paginacion/_PaginacionPartial?posicion="
+                    + posicion + "&iddepartamento=" + @departamento.IdDepartamento);
+            });
+        }
+
+        loadEmpleadoPaginacion(1);
+    </script>
+}
