@@ -252,6 +252,40 @@ namespace MvcCorePaginacionRegistros.Controllers
             ViewData["ANTERIOR"] = anterior;
             ViewData["POSICION"] = posicion;
             return View(model.Empleado);
+        }        
+        public async Task<IActionResult> _PaginacionPartial
+        (int? posicion, int iddepartamento)
+        {
+            if (posicion == null)
+            {
+                //POSICION PARA EL EMPLEADO
+                posicion = 1;
+            }
+            ModelEmpleadoPaginacion model = await
+                this.repo.GetEmpleadoDepartamentoAsync
+                (posicion.Value, iddepartamento);
+            Departamento departamento =
+                await this.repo.FindDepartamentosAsync(iddepartamento);
+            ViewData["DEPARTAMENTOSELECCIONADO"] = departamento;
+            ViewData["REGISTROS"] = model.Registros;
+            ViewData["DEPARTAMENTO"] = iddepartamento;
+            int siguiente = posicion.Value + 1;
+            //DEBEMOS COMPROBAR QUE NO PASAMOS DEL NUMERO DE REGISTROS
+            if (siguiente > model.Registros)
+            {
+                //EFECTO OPTICO
+                siguiente = model.Registros;
+            }
+            int anterior = posicion.Value - 1;
+            if (anterior < 1)
+            {
+                anterior = 1;
+            }
+            ViewData["ULTIMO"] = model.Registros;
+            ViewData["SIGUIENTE"] = siguiente;
+            ViewData["ANTERIOR"] = anterior;
+            ViewData["POSICION"] = posicion;
+            return View(model.Empleado);
         }
         public async Task<IActionResult> Departamentos()
         {
